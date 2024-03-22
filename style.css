@@ -16,6 +16,10 @@ body {
     color: #fff;
 }
 
+body.light {
+    background-color: #d3d3d3;
+}
+
 header {
     background-image: url("best-fall-movies.jpg");
     background-position: center;
@@ -35,6 +39,10 @@ header {
     align-items: center;
 }
 
+.overlay h1 {
+    color: #fff;
+}
+
 .link {
     color: #fff;
     text-decoration: none;
@@ -51,6 +59,10 @@ header {
 
 .movie:hover {
     box-shadow: 4px 4px 14px rgba(81, 81, 81, 0.5);
+}
+
+.info {
+    padding: 1em;
 }
 
 .movie-poster {
@@ -92,6 +104,8 @@ header {
     justify-content: stretch;
     height: 35px;
     margin-top: -20px;
+    box-shadow: 4px 4px 14px rgba(81, 81, 81, 0.5);
+    border-radius: 10px
 }
 
 .search input {
@@ -112,6 +126,55 @@ header {
     min-height: 100vh;
 }
 
+.container.light {
+    background-color: #f7fffe;
+    color: #292929;
+}
+
 .movies-container {
     padding: 2em;
+}
+
+.mode {
+    position: fixed;
+    bottom: 2.5em;
+    right: 2.5em;
+    background-color: #ffd900;
+    color: #292929;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+.btns-container {
+    position: relative;
+}
+
+.mode span.dark {
+    left: -50px;
+}
+
+.mode span.dark.active {
+    left: 0;
+}
+
+.mode span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all .3s linear;
+}
+
+.mode span.light {
+    left: 50px;
+}
+
+.mode span.light.active {
+    left: 0;
 }

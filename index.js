@@ -1,6 +1,7 @@
 const moviesEl = document.getElementById("movies");
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
+const modeEl = document.getElementById("mode");
 
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
@@ -8,37 +9,41 @@ let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 let foundMovie;
 async function getMovies(movieName = "ninja") {
     try {
-        const res = await fetch(`https://www.omdbapi.com/?apikey=13103cab&t=${movieName}&plot=full`);
+        const res = await fetch(`https://www.omdbapi.com/?apikey=13103cab&s=${movieName}&plot=full`);
         if (!res.ok) {
             throw Error("No movie found!")
         }
         data = await res.json();
-        let moviesHTML = ""
-        moviesHTML += `
-            <div class="movie">
-                <img src="${data.Poster}" class="movie-poster"> 
-                <div class="info">
-                    <div class="title-rate">
-                        <h2>${data.Title}</h2>
-                        <span class="rate">
+        moviesEl.innerHTML = ""
+        data.Search.forEach(item => {
+            fetch(`https://www.omdbapi.com/?apikey=13103cab&i=${item.imdbID}`)
+                .then(res => res.json())
+                .then(movie => {
+                    moviesEl.innerHTML += `
+                    <div class="movie">
+                    <img src="${movie.Poster}" class="movie-poster"> 
+                    <div class="info">
+                        <div class="title-rate">
+                            <h2>${movie.Title}</h2>
+                            <span class="rate">
                             <i class="bi bi-star-fill"></i>
-                            ${data.imdbRating}
-                        </span>
-                    </div>
-                    <div class="sub-info">
-                        <p>${data.Runtime}</p>
-                        <p>${data.Genre}</p>
-                        <button class="watchlist-btn" data-movie=${JSON.stringify(data.imdbID)}>
-                            <i class="bi bi-plus-circle-fill"></i>
-                            Watchlist
-                        </button>
-                    </div>
-                    <p class="story">${data.Plot.slice(0, 230)}</p>
-                </div>
-            </div>
-            `
-
-            moviesEl.innerHTML= moviesHTML;
+                            ${movie.imdbRating}
+                            </span>
+                        </div>
+                        <div class="sub-info">
+                            <p>${movie.Runtime}</p>
+                            <p>${movie.Genre}</p>
+                            <button class="watchlist-btn" data-movie=${JSON.stringify(movie.imdbID)}>
+                                <i class="bi bi-plus-circle-fill"></i>
+                                Watchlist
+                                </button>
+                                </div>
+                                <p class="story">${movie.Plot}</p>
+                                </div>
+                                </div>
+                                `
+                })
+        });
     } catch (err) {
         console.log(err)
     }
@@ -47,15 +52,13 @@ getMovies()
 
 searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
-  
+
     const searchTerm = searchInput.value;
     if (searchTerm) {
-      getMovies(searchTerm);  
-      searchInput.value = "";
-    } else {
-      window.location.reload();
+        getMovies(searchTerm);
+        searchInput.value = "";
     }
-  });
+});
 
 document.addEventListener("click", async (e) => {
     if (e.target.classList.contains("watchlist-btn")) {
@@ -78,3 +81,11 @@ document.addEventListener("click", async (e) => {
         }
     }
 });
+
+
+modeEl.addEventListener("click", () => {
+    document.body.classList.toggle("light")
+    document.getElementById("container").classList.toggle("light");
+    document.querySelector("span.light").classList.toggle("active");
+    document.querySelector("span.dark").classList.toggle("active");
+})

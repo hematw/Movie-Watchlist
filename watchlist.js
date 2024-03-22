@@ -1,4 +1,5 @@
 const watchEl = document.getElementById("watchlist");
+const modeEl = document.getElementById("mode");
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
 
@@ -23,3 +24,12 @@ watchlist.forEach(movie => {
     </div>
     `
 });
+
+
+
+modeEl.addEventListener("click", () => {
+    document.body.classList.toggle("light")
+    document.getElementById("container").classList.toggle("light");
+    document.querySelector("span.light").classList.toggle("active");
+    document.querySelector("span.dark").classList.toggle("active");
+})
