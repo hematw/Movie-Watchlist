@@ -37,7 +37,6 @@ function renderWatchlist(movies) {
         });
     } else {
         watchEl.innerHtml = `
-       			<div id="watchlist">
                     <div class="empty-watchlist">
                         <p>Your watchlist is covered with</p>
                         <h1>spider webs :(</h1>
@@ -45,8 +44,7 @@ function renderWatchlist(movies) {
                         <p>Time to fill it up with some cinematic gems!" 🍿✨
                             <a href="index.html">Add movie</a>
                         </p>
-                    </div>
-                </div>`
+                    </div>`
     } 
 }
 
