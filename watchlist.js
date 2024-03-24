@@ -7,7 +7,7 @@ a.length
 renderWatchlist(watchlist)
 
 function renderWatchlist(movies) {
-    movies.length && console.log("emavsd")
+    
     if(movies.length) {
         watchEl.innerHTML = "";
         movies.forEach(movie => {
@@ -35,7 +35,19 @@ function renderWatchlist(movies) {
             </div>
             `
         });
-    }
+    } else {
+        watchEl.innerHtml = `
+       			<div id="watchlist">
+                    <div class="empty-watchlist">
+                        <p>Your watchlist is covered with</p>
+                        <h1>spider webs :(</h1>
+                        <img src="images/spider.png"/>
+                        <p>Time to fill it up with some cinematic gems!" 🍿✨
+                            <a href="index.html">Add movie</a>
+                        </p>
+                    </div>
+                </div>`
+    } 
 }
 
 document.addEventListener("click", async (e) => {
