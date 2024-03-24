@@ -95,11 +95,14 @@ header {
     margin-bottom: .75em;
 }
 
+button {
+    cursor: pointer;
+}
+
 .btn {
     padding: 0.5em 1.5em;
     border-radius: 2em;
     border: none;
-    cursor: pointer;
     min-width: 120px;
     transition: all .3s linear;
 }
@@ -246,9 +249,7 @@ header {
         flex-wrap: wrap;
     }
 
-    .watchlist-btn {
-        margin: auto;
+    .btn {
         width: 100%;
-
     }
 }

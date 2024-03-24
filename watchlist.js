@@ -2,8 +2,13 @@ const watchEl = document.getElementById("watchlist");
 const modeEl = document.getElementById("mode");
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
+let a = []
+a.length
+renderWatchlist(watchlist)
+
 function renderWatchlist(movies) {
-    if(movies.lenght) {
+    movies.length && console.log("emavsd")
+    if(movies.length) {
         watchEl.innerHTML = "";
         movies.forEach(movie => {
             watchEl.innerHTML += `
@@ -32,7 +37,6 @@ function renderWatchlist(movies) {
         });
     }
 }
-renderWatchlist(watchlist)
 
 document.addEventListener("click", async (e) => {
     if (e.target.classList.contains("remove-btn")) {
