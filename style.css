@@ -1,6 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
     box-sizing: border-box;
@@ -11,17 +10,17 @@
 body {
     max-width: 768px;
     margin: auto;
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
     background-color: #444;
     color: #fff;
 }
 
 body.light {
-    background-color: #d3d3d3;
+    background-color: #DDDDDD;
 }
 
 header {
-    background-image: url("best-fall-movies.jpg");
+    background-image: url("images/best-fall-movies.jpg");
     background-position: center;
     background-size: cover;
     height: 170px;
@@ -54,10 +53,10 @@ header {
     justify-content: space-between;
     gap: 1.5em;
     margin: 2em 0;
+    padding: 1em;
     border: 1px solid #444;
-}
-
-.movie:hover {
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px rgba(81, 81, 81, 0.5);
     box-shadow: 4px 4px 14px rgba(81, 81, 81, 0.5);
 }
 
@@ -67,7 +66,7 @@ header {
 
 .movie-poster {
     width: 160px;
-    aspect-ratio: 9/16;
+    aspect-ratio: 2/3;
 }
 
 .title-rate {
@@ -77,6 +76,10 @@ header {
     margin-bottom: 1em;
 }
 
+.rate {
+    min-width: 70px;
+}
+
 .rate i {
     color: #ffd900;
 }
@@ -84,17 +87,46 @@ header {
 .sub-info {
     display: flex;
     align-items: center;
-    gap: 2em;
+    justify-content: space-between;
     margin-bottom: 1em;
+}
 
+.sub-info p {
+    margin-bottom: .75em;
+}
+
+.btn {
+    padding: 0.5em 1.5em;
+    border-radius: 2em;
+    border: none;
+    cursor: pointer;
+    min-width: 120px;
+    transition: all .3s linear;
 }
 
 .watchlist-btn {
-    background-color: transparent;
-    color: #ffd900;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+    background-color: #008DDA;
+    color: #EEEEEE;
+}
+
+.remove-btn {
+    background-color: #da0000;
+    color: #EEEEEE;
+}
+
+.btn:active {
+    transform: scale(1.1);
+}
+
+.swal2-confirm {
+    background-color: #008DDA;
+}
+
+#search-form {
+    position: sticky;
+    top: 0;
+    padding: 1em;
+    margin-top: -2em;
 }
 
 .search {
@@ -102,22 +134,21 @@ header {
     margin: auto;
     display: flex;
     justify-content: stretch;
-    height: 35px;
-    margin-top: -20px;
+    height: 2.5em;
     box-shadow: 4px 4px 14px rgba(81, 81, 81, 0.5);
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .search input {
     flex-grow: 2;
     padding: 6px;
-    border-radius:  8px 0 0 8px ;
+    border-radius: 8px 0 0 8px;
     border: none;
 }
 
 .search button {
     flex-grow: 1;
-    border-radius:  0 8px 8px 0;
+    border-radius: 0 8px 8px 0;
     border: none;
 }
 
@@ -126,8 +157,8 @@ header {
     min-height: 100vh;
 }
 
-.container.light {
-    background-color: #f7fffe;
+.light .container {
+    background-color: #EEEEEE;
     color: #292929;
 }
 
@@ -139,8 +170,8 @@ header {
     position: fixed;
     bottom: 2.5em;
     right: 2.5em;
-    background-color: #ffd900;
-    color: #292929;
+    background-color: #008DDA;
+    color: #EEEEEE;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -177,4 +208,47 @@ header {
 
 .mode span.light.active {
     left: 0;
+}
+
+.empty-watchlist {
+    text-align: center;
+}
+
+.empty-watchlist img{
+    width: 40%;
+    margin: 2.5em 0;
+}
+
+.empty-watchlist a {
+    color: #008DDA;
+}
+
+@media (max-width: 480px) {
+    .movie {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .title-rate {
+        flex-direction: column;
+    }
+
+    .rate {
+        min-width: 50px;
+    }
+
+    .title-rate h2 {
+        font-size: 1.25em;
+    }
+
+    .sub-info {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .watchlist-btn {
+        margin: auto;
+        width: 100%;
+
+    }
 }
